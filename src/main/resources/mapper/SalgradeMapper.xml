@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhj.dao.SalgradeMapper">
+  <resultMap id="BaseResultMap" type="com.zhj.entity.Salgrade">
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="losal" jdbcType="DECIMAL" property="losal" />
+    <result column="hisal" jdbcType="DECIMAL" property="hisal" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zhj.entity.Salgrade">
+    insert into salgrade (grade, losal, hisal
+      )
+    values (#{grade,jdbcType=INTEGER}, #{losal,jdbcType=DECIMAL}, #{hisal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select grade, losal, hisal
+    from salgrade
+  </select>
+</mapper>
