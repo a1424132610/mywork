@@ -1,22 +1,19 @@
 package com.zhj;
 
+import com.zhj.model.dao.User;
+import com.zhj.runable.TestRunable;
+import org.apache.lucene.store.RandomAccessInput;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.core.type.AnnotationMetadata;
-import org.springframework.core.type.ClassMetadata;
-import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
-import org.springframework.core.type.classreading.MetadataReader;
-import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.util.ClassUtils;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Hello world!
@@ -24,37 +21,27 @@ import java.util.ArrayList;
  */
 @SpringBootApplication
 @EnableTransactionManagement
-@MapperScan(basePackages = {"com.zhj.dao"})
+@MapperScan(basePackages = {"com.zhj.model.dao"})
 public class MyWorkApp
 {
-    public static void main( String[] args ) throws IOException, ClassNotFoundException {
-        SpringApplication.run(MyWorkApp.class);
-    }
+    public static void main( String[] args ) throws IOException {
 
+        List<User> objects = new ArrayList<>();
 
+        User user1 = new User(1L,2,"3");
+        User user2 = new User(1L,2,"4");
+        User user3 = new User(2L,2,"5");
+        objects.add(user1);
+        objects.add(user2);
+        objects.add(user3);
 
-
-    private static void forNameClass(String method) throws IOException, ClassNotFoundException {
-        ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
-        MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resourcePatternResolver);
-
-        String s1 = ClassUtils.convertClassNameToResourcePath("com.zhj.dao");
-        String s = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + s1 + "/" + "*.class";
-        Resource[] resources = resourcePatternResolver.getResources(s);
-        for (Resource resource : resources) {
-            MetadataReader metadataReader = metadataReaderFactory.getMetadataReader(resource);
-            AnnotationMetadata metadata = metadataReader.getAnnotationMetadata();
-            metadata.getAnnotationTypes().forEach(e -> {
-                if(e.equals("org.apache.ibatis.annotations.Mapper")){
-                    String className = metadataReader.getClassMetadata().getClassName();
-                    
-                }
-            });
-        }
+        List<User> users = objects.stream().filter(user -> user.getSysno().equals(1L)).collect(Collectors.toList());
+        Map<Long, List<User>> collect = objects.stream().collect(Collectors.groupingBy(User::getSysno));
+        System.out.println(collect);
 
     }
-    private static void proxy(Object o,Method method){
 
-    }
+
+
 
 }
