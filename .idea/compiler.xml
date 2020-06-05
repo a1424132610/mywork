@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <excludeFromCompile>
-      <file url="file://$PROJECT_DIR$/src/main/java/com/zhj/utils/BinaryTree.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/com/zhj/forexample/binarySearch/BinaryTree.java" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
@@ -10,11 +10,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mywork" />
+        <module name="mywork-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mywork" target="1.8" />
+      <module name="mywork-demo" target="1.8" />
       <module name="redis" target="1.8" />
     </bytecodeTargetLevel>
   </component>

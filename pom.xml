@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zhj</groupId>
-    <artifactId>mywork</artifactId>
+    <artifactId>mywork-demo</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>mywork</name>
@@ -19,7 +19,7 @@
           targetModelPackage是生成的实体类包名
           -->
         <targetJavaProject>${basedir}/src/main/java</targetJavaProject>
-        <targetMapperPackage>com.zhj.dao</targetMapperPackage>
+        <targetMapperPackage>com.zhj.web.dao</targetMapperPackage>
         <targetModelPackage>com.zhj.entity</targetModelPackage>
         <!--  XML生成路径  -->
         <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
